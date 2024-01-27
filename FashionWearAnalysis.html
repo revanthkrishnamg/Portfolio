@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Men's Fashion Wear - Data Analytics</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            body {
+                color: #000000; /* Sets text color to black */
+                font-weight: 600; /* Mild bold effect */
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+        <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Header -->
+                <header id="header">
+                    <div class="inner">
+                
+                    </div>
+                </header>
+                <!-- Main -->
+                <div id="main">
+                    <div class="inner">
+                        <h1>Men's Fashion Wear: Data Analytics Project</h1>
+                      <!--  <span class="image main"><img src="images/fashion_project.jpg" alt="" /></span> -->
+
+                        <!-- Report Content Starts Here -->
+
+						<section>
+                            <h4>View Full Python Notebook on GitHub:</h4>
+                            <p><a href="https://github.com/revanthkrishnamg/Mens_Fashion_Retailer_Clustering" target="_blank">Click here to view the full jupyter notebook on GitHub</a></p>
+                        </section>
+
+                        <section>
+                            <h2>Introduction:</h2>
+                            <p>A men’s fashion wear company, is looking to optimize its profitability by analysing the efficiency of each of its marketing channels. Provided with two datasets – value_info and demographic_info – I performed an in-depth analysis of their marketing strategies and customer demographics to identify success stories and areas for improvement.
+							The clear objective of this project was: to evaluate the efficiency of the company's marketing channels and to gain an understanding of its diverse customer base. This phase set the foundation for a targeted analysis focused on identifying areas for optimization and growth for the company.</p>
+					
+						</section>                       
+                <section>
+                    <section>
+                         <h2>Data Preparation</h2>
+                         <h3>Data Import and Cleaning</h3>
+                         <ul>
+                            <li>Checked for missing values across all columns.</li>
+                            <li>Checked the data types for all columns converted them to the relevant data types to facilitate accurate analysis.</li>
+                            <li>Ensured no duplicate rows existed within the datasets to maintain data integrity.</li>
+                            <li>Checked for the outliers in value_info to understand the data even more but removed the outliers during the clustering process so we don’t lose data here.</li>
+                        </ul>
+                         <h3>Data Integrity and Aggregation</h3>
+                        <ul>
+                          <li>Checked for negative values for order counts and removed them and for promotion values as well where we understood that there are positive and negative values, the positive values indicates the loss and negative values here indicates the profit - if a customer hasn't availed the offers.</li>
+                        <li>Created 2 features here by data aggregation, TotalProfit and TotalOrders per customer, providing the total individual customer value to the company.</li>
+                       </ul>
+                    </section>
+
+                <section>
+                        <h2>Customer Segmentation with K-means Clustering</h2>
+                <ul>
+                        <li>Developed new features such as Age, Age Group, Gender, Average Profit Per Order and Promotion Use Rate - to get more insights into customer behaviours while clustering.</li>
+                        <li>Checked for multicollinearity between the features by conducting Pearson's correlation test and removed the highly correlated features so the clustering is meaningful.</li>
+                        <li>Checked for outliers of the relevant (continuous data) features and removed them to maintain data quality and normalized the features before clustering for better results.</li>
+                        <li>Used Elbow Method to determine the number of clusters.
+                            <br>
+                       
+                            <img src="images/elbow.jpg" alt="" style="width:100%;max-width:600px;height:auto;">
+                        </li>
+                        <li>Used K-means clustering to determine which customers belonged to one of the four clusters based on their purchasing behaviour.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Results</h2>
+                    <h3>Customer Segmentation Insights</h3>
+                    <img src="images/heatmap_1.JPG" alt="" style="width:100%;max-width:600px;height:auto;">
+                    
+                    <ul>
+                        From the above heatmap we can understand:
+                        <li><strong>Cluster 0: Premium Customers</strong> - They are of high-value. They might not order frequently, but when they do, they contribute a significant profit.</li>
+                        <li><strong>Cluster 1: Frequent Customers</strong> - They have the most number of orders and a high total profit, but their average order value is low.</li>
+                        <li><strong>Cluster 2: Casual Customers</strong> - They have the lowest first order profit and average profit per order.</li>
+                        <li><strong>Cluster 3: Promotion-Driven Customers</strong> - They have a moderate profit but high use of promotions.</li>
+                    </ul>
+                    <section>
+                        <h3>Channel Performance Analysis</h3>
+                        <ol>
+                            <li><strong>Direct Channel:</strong> This was the most profitable channel suggesting that VogueVista has a loyal customer base and a well-established brand presence.</li>
+                            <li><strong>Organic Search:</strong> This channel performs exceptionally well, indicating a good online presence.</li>
+                            <li><strong>Paid Social:</strong> Initially, this channel starts slow in terms of 1st order profit but picks up for total profit and orders, attracting loyal customers over time.</li>
+                            <li><strong>Paid Search:</strong> This channel demonstrated a balanced performance, with total profit being proportional to the total orders.</li>
+                            <li><strong>Affiliates:</strong> Initially, affiliates showed good 1st order profit but then had a drop in total profit, indicating that this channel might not be performing as well in the long term.</li>
+                        </ol>
+                    </section>
+                    <img src="images/result_1.JPG" alt="" style="width:100%;max-width:385px;height:auto;">
+                    <img src="images/result_2.JPG" alt="" style="width:100%;max-width:750px;height:auto;">
+                    <p>These graphs offer a comparison of the profitability and customer activity within each channel. The Direct channel outperforms others in 1st order profit, total profit and total orders, indicating that it can attract and retain customers.</p>
+                    <img src="images/result_3.JPG" alt="" style="width:100%;max-width:750px;height:auto;">
+                    <p>This distribution graph tells us the number of customers from each channel falling into the four identified clusters highlighting the Direct channel's dominance and the varying effectiveness of other channels across different customer segments.</p>
+                    <section>
+                        <h3>Demographic Analysis</h3>
+                        
+                        <h4>Age Group Distribution</h4>
+                        <img src="images/result_4.JPG" alt="" style="width:100%;max-width:750px;height:auto;">
+                        <p>The dataset primarily represented younger to middle-aged individuals. The 19-30 and 31-40 age groups were significantly represented, with Casual Customers having a strong presence (3,194 individuals in the 31-40 age group).</p>
+                        
+                        <h4>Gender Distribution</h4>
+                        
+                        <p>The analysis revealed a total of 6,538 female customers and 16,655 male customers. Notably, the female customer base was significant, even for a men’s fashion retailer. The largest segment for females was 'Casual Customers' (2,738), followed by 'Frequent Customers' (1,445).</p>
+                        <img src="images/result_5.JPG" alt="" style="width:100%;max-width:550px;height:auto;">
+                        <p>Even though it's a men's fashion retailer, we can see nearly 30% of the overall customers are women who are shopping in this brand. The Gender Ratio in each segment are:</p>
+                        <ul>
+                            <li>Casual Customers: 66.3% Male and 33.7% Female</li>
+                            <li>Frequent Customers: 77.7% Male and 22.3% Female</li>
+                            <li>Premium Customers: 77.1% Male and 22.9% Female</li>
+                            <li>Promotion-Driven Customers: 67.4% Male and 32.6% Female</li>
+                        </ul>
+                        <img src="images/result_6.JPG" alt="" style="width:100%;max-width:550px;height:auto;">	
+                    <p>Noticed that the title column in Demographics_info has Mrs and Miss, which could categorize as married female customers and unmarried female customers. From the above, we can see a clear dominance of unmarried female customers across all customer segments. This could potentially mean that VougeVista could start a unisex fashion line to attract more female customers.</p>
+                    </section>
+                    
+                    <h3>Geographic Distribution Analysis</h3>
+                    <img src="images/result_7.JPG" alt="" style="width:100%;max-width:550px;height:auto;">
+                    <p>Dublin was the dominant location, accounting for approximately 88% of customers across all segments. Cork consistently came in second place, with around 4% to 4.6% across the segments. Other locations like Limerick, Galway, and Waterford followed. This indicates where localized marketing efforts could be maximised.</p>
+
+                    <h3>Behavioural Analysis</h3>
+                    <img src="images/result_8.JPG" alt="" style="width:100%;max-width:850px;height:auto;">
+                    <p>The order frequency and promotion use graphs tell us about the purchasing patterns of each customer cluster. Frequent Customers show the highest order frequency, while Promotion-Driven Customers have the highest promotion use rate. The other segments have more or less the same use of promotions. This information can be used for cluster/segment targeted promotional strategies.</p>
+                    <img src="images/result_9.JPG" alt="" style="width:100%;max-width:450px;height:auto;">
+                    <p>The average profit contribution graph highlights the value of each customer segment to VogueVista. Premium Customers provide the highest profit per order, reiterating the point that they are the key customers to target.</p>
+
+                </section>
+                <section>
+                    <h2>Strategic Recommendations</h2>
+                    <h5>Channel Performance</h5>
+                    <ol>
+                        <li><strong>Organic Search:</strong> Investment in increasing the company's website visibility on search engines like Google and Microsoft Bing is recommended to attract more casual and frequent customers.</li>
+                        <li><strong>Affiliates:</strong> Focus on building partnerships with affiliates who have a strong presence in the men's fashion industry, as they attract a significant number of casual customers.</li>
+                        <li><strong>Paid Social:</strong> Although not the strongest channel initially, targeting premium customers through collaborations with fashion influencers on Instagram could yield substantial benefits.</li>
+                        <li><strong>Paid Search:</strong> Ad placements should be optimized to attract casual and frequent customers, with a moderate focus on promotion-driven segments.</li>
+                        <li><strong>Direct Channel:</strong> Introduce loyalty programs to ensure repeat business, especially targeting premium and frequent customers.</li>
+                    </ol>                   
+                    <h5>Demographic Recommendations</h5>
+                    <ol>
+                        <li><strong>Age-Focused Marketing:</strong> Products and promotions should be made to appeal to younger and middle-aged groups. Additionally, senior discount schemes could be introduced for the 51+ age group as a potential growth segment.</li>
+                        <li><strong>Gender-Inclusive Fashion:</strong> Despite being a men's fashion retailer, the significant female customer base, especially unmarried female customers, suggests an opportunity to explore unisex fashion lines.</li>
+                        <li><strong>Localized Marketing Strategies:</strong> In Dublin, where 88% of the customer base is located, customer segment-specific campaigns are recommended. Efforts should also be made to strengthen the brand's presence in Cork and explore potential markets in Limerick, Galway, and Waterford.</li>
+                    </ol>                    
+                    <h5>Customer Behavior Recommendations</h5>
+                    <ol>
+                        <li><strong>Engage Premium Customers:</strong> Offer exclusive deals and personalized recommendations to engage this high-value segment.</li>
+                        <li><strong>Incentivize Frequent Customers:</strong> Encourage higher order values through bundling products and providing discounts.</li>
+                        <li><strong>Motivate Casual Customers:</strong> Engage this segment through newsletters, personalized recommendations and incentives to encourage repeat purchases.</li>
+                        <li><strong>Promote to Promotion-Driven Customers:</strong> Introduce tiered promotions and referral programs to capitalize on their promotional offers purchases.</li>
+                    </ol>
+                    
+                </section>
+                <section>
+                        <h2>Conclusion</h2>
+                        <p>This project provides a deep and comprehensive analysis of the company’s marketing strategies and customer demographics. The strategic recommendations with the data analysis performed are designed to guide the company in enhancing its profitability and market presence.</p>
+                        </section>                       
+                        <!-- Report Content Ends Here -->
+                    </div>
+                </div>
+            </div>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+
+    </body>
+</html>

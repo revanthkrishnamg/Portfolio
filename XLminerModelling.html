@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>XL Miner - Modeling Report</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            body {
+                color: #000000; /* Sets text color to black */
+                font-weight: 600; /* Mild bold effect */
+            }
+        </style>
+    </head>
+
+    <body class="is-preload">
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <div class="inner">
+                    <!-- Content can be added here if needed -->
+                </div>
+            </header>
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+                    <h1>Predictive Modeling for Marketing Optimization using XL Miner</h1>
+
+                    <!-- Report Content Starts Here -->
+
+					<section>
+						<h4>View Full Report and Excel Results on GitHub:</h4>
+						<p><a href="https://github.com/revanthkrishnamg/Modelling_XLMiner" target="_blank">Click here to view the full report and the excel results on GitHub</a></p>
+					</section>
+
+
+					<section>
+						<h2>Problem Statement:</h2>
+                        <p>Management of Western Alliance Bank is concerned how to optimise marketing
+							strategies and improve their effectiveness in selling term deposits to the
+							customers. The bank needs help in developing a more granular
+							understanding of its customer base, predict customers' response to its
+							telemarketing campaign and establish a target customer profile for future
+							marketing plans. The bank can then focus its marketing efforts on those
+							customers.</p>
+					</section>
+                    <section>
+                        <h2>Executive Summary:</h2>
+                        <p>This project indicates the development and selection of a predictive model for Western Alliance Bank to optimize the effectiveness of marketing strategies targeting term deposit subscriptions. Using the principles of CRISP-DM methodology described by Chapman, P., Clinton, J., Kerber, R in CRISP-DM 1.0: Step-by-step data mining guide, we focus on building a model that predicts if a customer will subscribe to the term deposit or not.</p>
+                    </section>
+
+                    <section>
+                        <h2>1. Business Understanding</h2>
+                        <h6>Objectives:</h6>
+                        <ul>
+                            <li>To use predictive analytics for improving term deposit subscription rates.</li>
+                            <li>To ensure marketing efforts by targeting customers with a high probability to subscribe.</li>
+                            <li>To achieve a cost-effective marketing approach by focusing the efforts on reaching out to potential customers who are most likely to be interested, rather than spending resources on those who are less likely to engage with the term deposit subscription.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>2. Data Preparation</h2>
+                        <p>Data Cleaning and Transformation:</p>
+                        <ul>
+                            <li>Systematically cleaned data to ensure data quality.</li>
+                            <li>Checked for missing values, data types, and duplicated rows.</li>
+                            <li>Combined Poutcomes ‘other’ with ‘unknown’ for even data distribution.</li>
+                            <li>Removed rows where 'duration' is less than 5 seconds.</li>
+                            <li>Checked for outliers in Age, Balance, Duration, Campaign, Pdays, and Previous.</li>
+                            <li>Removed or kept outliers based on their business relevance.</li>
+                            <li>Evaluated and retained relevant columns based on data distribution, such as Marital Status and Education.</li>
+                            <li>Used one hot encoding to encode categorical variables for XL Miner classification modeling.</li>
+                            <li>Dataset split into Standard partitioning (SP) with 50% training, 30% validation, 20% testing and Partitioning with Oversampling (OS) with a balanced training set.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>3. Modelling</h2>
+                    	   <h6>Various Models Used:</h6>
+						   <img src="images/Z_1.JPG" alt="" style="width:100%;max-width:1200px;height:auto;">
+						  
+                        <h6>Model Selection:</h6>
+                        <ul>
+                            <li>Models with 100% accuracy may be considered for overfitting concerns and lack of generalizability. These models cannot be primary choice of deployment. </li>
+                            <li>Selected prediction on models' capacity for binary classification and adaptability to the campaign's unique dataset.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>4. Evaluation</h2>
+                        <h6>Performance Metrics:</h6>
+                        <ul>
+                            <li>Precision is the best metric to ensure marketing efforts are correctly concentrated on the most promising prospects, thus maximizing return on investment. Precision is the ratio of true positives (correctly identified subscribers) to all predicted positives (all instances where the model predicted a subscriber, correctly or not). A high precision means that when the model predicts a customer is a subscriber, it is very likely to be correct.</li>
+                            <li>Also considered sensitivity, accuracy, specificity, and F1 score.</li>
+                            <li>Conducted evaluation on both standard partitioning and partitioning with oversampling test scores.</li>
+                        </ul>
+                        <h6>Model Comparision:</h6>
+                        <ul>
+							<p>Let’s reiterate the objectives and how our models can be based on them. Our Objectives are:</p>
+                            <li>Improving Term Deposit Subscription Rates: This requires a model that not only accurately predicts potential subscribers (high precision) but also doesn't miss out on a significant number of actual subscribers (reasonable sensitivity).</li>
+							<li>Cost-Effective Marketing Approach: Precision is crucial here, as targeting customers who are most likely to subscribe will optimize resource allocation. However, it's also important to consider the overall accuracy and F1 score for a balanced approach.</li> 
+							<li>Improving Marketing Campaign Focus and Effectiveness: This involves identifying the right customers (precision) without overwhelming those unlikely to subscribe (specificity) and making sure there’s a broad enough reach to capture most potential subscribers (sensitivity).</li>  
+							<h2></h2>
+							<p>Based on the business needs, evaluating the best practical models’ results:</p>
+							<img src="images/Z_2.JPG" alt="" style="width:100%;max-width:1000px;height:auto;">
+							<P>Considering the business needs, K-Nearest Neighbours (KNN) ensemble bagging in the oversampling partition seems to be the most suitable model (left figure above). It offers high precision making sure that the marketing efforts are focused on the most promising prospects and its sensitivity is really high, which means it can also identify a good number of actual subscribers. This is crucial for a cost-effective and efficient marketing strategy.
+
+								However, it is also crucial to consider the potential for overfitting with the Ensemble Decision Trees (right figure above). If further validation confirms that the Ensemble Decision Trees model is robust and generalizes well, it might be worth considering due to its high precision and sensitivity.
+								
+								In summary, for a balanced approach that meets the business objectives, the KNN ensemble bagging partitioned by oversampling seems most appropriate with a secondary consideration for the Ensemble Decision Trees model if its generalizability is confirmed.
+								</P>
+						</ul>
+
+                    </section>
+
+                    <section>
+                        <h2>6. Deployment</h2>
+						<h6>Implementation Strategy:</h6>
+						
+						<p>KNN Model Ensemble Bagging is recommended for deployment with performance monitoring mechanisms in place.</p>
+						
+						<h6>Parallel Testing:</h6>
+						<ul>
+						<li>Run the Ensemble Decision Trees model in parallel with the primary KNN model. This allows for a side-by-side comparison of their performances in a real-world setting.
+						<li>Use this parallel testing phase to validate the practical accuracy and generalizability of the Ensemble Decision Trees model, especially considering its 100% accuracy in testing, which might indicate overfitting.
+						</ul>
+                    </section>
+
+                    <section>
+                        <h2>7. Conclusion and Recommendations</h2>
+                        <h6>Key Findings:</h6>
+                        <ul>
+                            <li>Precision is very important in direct marketing to ensure cost-efficiency.</li>
+                            <li>KNN Ensemble Bagging Model offers the best balance between high precision and accuracy, essential for effective targeting.</li>
+                        </ul>
+                        <h6>Recommendations:</h6>
+                        <ul>
+                            <li>Deploy KNN Ensemble Bagging Model for targeted marketing initiatives and as mentioned in the deployment section, perform parallel testing with the Ensemble Decision Trees.</li>
+                            <li>Establish a continuous improvement cycle for the model to adapt to new data and market changes as mentioned in the Deployment section.</li>
+                        </ul>
+                    </section>
+
+                    <!-- Report Content Ends Here -->
+                </div>
+            </div>
+
+            <!-- Footer could be added here if needed -->
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>YouTube Channel Engagement Optimization Project Report</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+            body {
+                color: #000000; /* Sets text color to black */
+                font-weight: 600; /* Mild bold effect */
+            }
+        </style>
+    </head>
+
+    <body class="is-preload">
+        <div id="wrapper">
+
+            <header id="header">
+                <div class="inner">
+                </div>
+            </header>
+
+            <div id="main">
+                <div class="inner">
+                    <h1>YouTube Channel Engagement Optimization Project Report</h1>
+
+					<section>
+						<h4>View Full Python Notebook on GitHub:</h4>
+						<p><a href="https://github.com/revanthkrishnamg/YT_Channel_EDA_Modelling" target="_blank">Click here to view the full jupyter notebook on GitHub</a></p>
+					</section>
+
+                    <section>
+                        <h2>Introduction</h2>
+                        <p>This report presents a comprehensive analysis of my YouTube channel's data to optimize viewer engagement. Leveraging the YouTube API, the project systematically evaluates factors influencing video views and interactions, utilizing an engagement score calculated from views, likes and comments. 
+							In addition, the project involves building and comparing various predictive models to accurately classficy video engagement levels - as either high or low. By utilizing machine learning techniques and data-driven insights, the models aim to identify key patterns and factors that contribute to higher viewer engagement. This aspect of the project not only enhances the understanding of current audience behavior but also guides strategic content planning for improved performance.	
+						</p>
+                    </section>
+
+                    <section>
+                        <h2>Data Collection</h2>
+                        <p>Data was collected using the YouTube API. Channel and video statistics were extracted, including subscriber counts, total views, likes, comments and detailed video metrics. Additionally, viewer comments were collected for sentiment analysis, offering deeper insights into audience preferences.</p>
+                    </section>
+
+					<section>
+						<h3>New Features Created for Analysis and Model Building</h3>
+					
+						<ol>
+							<li><strong>Time of Upload:</strong> Extraction of hour, day, month, year from the upload date. Identification of day of the week and weekends.</li>
+					
+							<li><strong>Video Length Category (Short, Medium, Long):</strong> Categorization of video duration into short (0-60s), medium (60-300s), and long (300s+).</li>
+					
+							<li><strong>Engagement Ratio (Likes to views, comments to views, likes to comments):</strong> Calculation of ratios like likes to views, comments to views, and likes to comments.</li>
+					
+							<li><strong>Net Subscriber Gain per video:</strong> Computation of net subscribers gained for each video.</li>
+					
+							<li><strong>Engagement Score (0-100):</strong> Creation of a score based on views, likes and comments of a video where normalization was done and weights were added to give views 65% weight, likes - 25% weight, comments - 10% weight.</li>
+
+							<li><strong>Engagement Category:</strong> Classification of videos into 'High' or 'Low' engagement categories based on the engagement score, using the top 30% as high engagement videos.</li>
+						</ol>
+					</section>
+							
+
+                    <section>
+                        <h2>Data Preparation</h2>
+                        <ul>
+                            <li>Missing values in descriptions were replaced with "Empty."</li>
+                            <li>Non-numeric values in 'comment_count' were converted to numeric.</li>
+                            <li>ISO 8601 duration format was parsed into seconds for ease of analysis.</li>
+                            <li>Duplicates and outliers were identified and addressed to maintain data integrity.</li>
+                            <li>Categorical data, such as 'category_id' and 'video_status,' were examined and refined.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Exploratory Data Analysis (EDA)</h2>
+                        <ul>
+                            <li><strong>Engagement Score Distribution:</strong></li>
+							<img src="images/E_1.JPG" alt="" style="width:100%;max-width:500px;height:auto;">
+                            <P>The histogram shows us a right-skewed distribution of engagement scores with majority of videos at lower scores, suggesting that most content has low engagement. A small number of videos achieve high engagement. Identifying features of high-performing videos could provide actionable insights to increase overall engagement on the channel.</P>
+
+							<li><strong>Time Series Analysis:</strong></li>
+                            <img src="images/E_2.jpg" alt="" style="width:100%;max-width:700px;height:auto;">
+							<p>This graph shows us that the channel was active and gaining attention from 05-2021 to 11-2021 and then the channel has been quiet in attracting engagers since then but a little spike in early 2023. Meaning - the channel is at it's revival stage. Once, we gain some insights from this historical data, the channel can be revived.</p>
+
+							<li><strong>Temporal Analysis:</strong></li>
+                            <img src="images/E_4.jpg" alt="" style="width:100%;max-width:700px;height:auto;">
+							<p>Engagement peaks on Sunday and dips mid-week, indicating weekends may be more effective for uploads.</p>
+
+							<li><strong>Video Length Categories:</strong></li>
+							<img src="images/E_6.jpg" alt="" style="width:100%;max-width:600px;height:auto;">
+                            <p>This graph shows us that this channel has succeded so far uploading short videos suggesting that concise content may be more effective at capturing audience attention.</p>
+
+							<li><strong>Sentiment Analysis:</strong></li>
+							<img src="images/E_7.jpg" alt="" style="width:100%;max-width:500px;height:auto;">
+                            <p>The plot shows no strong correlation between comment polarity and engagement scores, indicating that neither positive nor negative sentiment consistently affects engagement</p>
+
+							<li><strong>Keyword Analysis</strong> for Identifying impactful keywords in high and low engagement videos:</li>
+							<img src="images/E_8.jpg" alt="" style="width:100%;max-width:600px;height:auto;">
+							<img src="images/E_9.jpg" alt="" style="width:100%;max-width:600px;height:auto;">
+							<p>The word clouds for high engagement video titles show frequent use of impactful words like SECRET, FREE, REWARDS, iFerg (the most successful content creator of codm - call of duty mobile), CODM (Game name), Legendary and Skin (different skin series), which attracts viewers. In contrast, low engagement titles have terms like NUKE (NUKE series), Ranked, DAILY and player -> these words should not be avoided completely as, when these words were used, the video lengths were higher, so instead, we should not rely completely on this but should get an idea from the high engagment video keyword frequency.
+						</p>
+
+						</ul>
+                    </section>
+
+					<section>
+						<h2>Model Building</h2>
+					
+						<p>Extensive model building and evaluation processes were conducted to classify videos into high vs. low engagement categories, focusing on several key features and employing various machine learning techniques.</p>
+					
+						<ul>
+							<li><strong>Combining Text Features:</strong> Combined title and description keywords for analysis.</li>
+							<li><strong>Feature Selection:</strong> Selected features like duration, upload hour, title length, description length, day of the week, weekend status, and video definition.</li>
+							<li><strong>Data Cleaning and Encoding:</strong> Removed unnecessary columns and performed one-hot encoding on categorical features.</li>
+							<li><strong>Correlation Analysis:</strong> Identified and removed highly correlated features to avoid multicollinearity.</li>
+							<li><strong>Model Selection:</strong> Selected a variety of models including Logistic Regression, KNN, Decision Tree, Random Forest, Gradient Boosting, AdaBoost, SVM, GaussianNB, LDA and MultinomialNB.</li>
+							<li><strong>Data Scaling and SMOTE Application:</strong> Scaled the data and applied SMOTE for class imbalance handling.</li>
+							<li><strong>Model Evaluation:</strong> Evaluated models based on accuracy, precision, recall, and F1 score.</li>
+							<li><strong>Hyper-parameter Tuning:</strong> Performed Grid Search for hyper-parameter tuning, particularly focusing on KNN, Gradient Boosting, AdaBoost and GaussianNB.</li>
+							<li><strong>AdaBoost - Best Model:</strong> Identified AdaBoost as the best model post hyper-parameter tuning and conducted an in-depth evaluation including ROC curve analysis.</li>
+							<li><strong>Sample Prediction:</strong> Demonstrated the model's predictive capability with a sample data prediction.</li>
+						</ul>
+					
+						<p>The above steps culminated in the successful development of a model capable of effectively classifying YouTube videos into high or low engagement categories, providing crucial insights for channel growth and content strategy optimization.</p>
+					</section>
+
+					<section>
+						<h2>Results</h2>
+						
+						<!-- Image for Model Evaluation -->
+						<h4>Model Evaluation</h4>
+						<img src="images/F_1.JPG" alt="Model Evaluation Results">
+						<h2></h2>
+						<p>The table showcases a comparison between different machine learning models for model Selection for Hyper-parameter Tuning -></p>
+						<ul>
+							<li>KNN (K-Nearest Neighbors): It performed well (0.7333 accuracy), especially in the non-scaled version.</li>
+							<li>GradientBoosting: This model also shows promising results with an accuracy of 0.6833.</li>
+							<li>AdaBoost: With an accuracy of 0.6833, AdaBoost is another strong candidate</li>
+							<li>GaussianNB (Gaussian Naive Bayes): It achieved a decent accuracy of 0.6833 and might benefit from tuning.</li>
+						</ul>
+						<!-- Image for Hyper-parameter Tuning -->
+						<h4>Hyper-parameter Tuning</h4>
+						<img src="images/F_2.JPG" alt="Hyper-parameter Tuning Results">
+						<p>This table presents the outcomes of hyper-parameter tuning. The AdaBoost classifier, with specific parameter adjustments, attained the best accuracy. This underscores the impact of fine-tuning on achieving optimal model configurations that contribute to predictive success.</p>
+						
+						<!-- Image for Classification Summary -->
+						<h4>Classification Summary</h4>
+						<img src="images/F_3.JPG" alt="Classification Summary">
+						<p>The classification summary provides a detailed breakdown of the best model's performance on the testing data. The confusion matrix and subsequent metrics illustrate a balanced classification ability, considering both specificity and sensitivity, which are crucial for a nuanced evaluation of model accuracy.</p>
+						
+						<!-- Image for ROC Curve -->
+						<h4>ROC Curve for AdaBoost</h4>
+						<img src="images/F_4.JPG" alt="ROC Curve for AdaBoost">
+						<p>The ROC curve shows us the preditive capability of the AdaBoost classifier, with AUC scores of 0.98 for the training set and 0.78 for the test set. The closeness of these two curves suggests that the model has generalized well, without overfitting to the training data.</p>
+					
+					</section>
+					
+					
+
+                    <section>
+                        <h2>Recommendations</h2>
+                        <ul>
+                            <li><strong>Optimize Video Length:</strong> Shorter videos tend to have higher engagement.</li>
+                            <li><strong>Focus on High-Engagement Keywords:</strong> Use impactful keywords identified in the analysis.</li>
+                            <li><strong>Adjust Upload Schedule:</strong> Align uploads with times and days showing higher engagement.</li>
+                            <li><strong>Improve Video Quality:</strong> High-definition videos were more engaging.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Conclusion</h2>
+                        <p>The project successfully identified key factors influencing viewer engagement. The AdaBoost classifier, after tuning multiple times, emerged as the most effective model, achieving a 75% accuracy on test data (size of the dataset - 300 rows) The analysis provides actionable insights for enhancing the YouTube channel's performance, though continuous data acquisition and analysis are recommended for sustained growth and adaptability to changing viewer preferences.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
