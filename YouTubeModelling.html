@@ -43,6 +43,17 @@
                         <p>Data was collected using the YouTube API. Channel and video statistics were extracted, including subscriber counts, total views, likes, comments and detailed video metrics. Additionally, viewer comments were collected for sentiment analysis, offering deeper insights into audience preferences.</p>
                     </section>
 
+
+		                        <section>
+                        <h2>Data Preparation</h2>
+                        <ul>
+                            <li>Missing values in descriptions were replaced with "Empty."</li>
+                            <li>Non-numeric values in 'comment_count' were converted to numeric.</li>
+                            <li>ISO 8601 duration format was parsed into seconds for ease of analysis.</li>
+                            <li>Duplicates and outliers were identified and addressed to maintain data integrity.</li>
+                            <li>Categorical data, such as 'category_id' and 'video_status,' were examined and refined.</li>
+                        </ul>
+                    </section>
 					<section>
 						<h3>New Features Created for Analysis and Model Building</h3>
 					
@@ -61,17 +72,6 @@
 						</ol>
 					</section>
 							
-
-                    <section>
-                        <h2>Data Preparation</h2>
-                        <ul>
-                            <li>Missing values in descriptions were replaced with "Empty."</li>
-                            <li>Non-numeric values in 'comment_count' were converted to numeric.</li>
-                            <li>ISO 8601 duration format was parsed into seconds for ease of analysis.</li>
-                            <li>Duplicates and outliers were identified and addressed to maintain data integrity.</li>
-                            <li>Categorical data, such as 'category_id' and 'video_status,' were examined and refined.</li>
-                        </ul>
-                    </section>
 
                     <section>
                         <h2>Exploratory Data Analysis (EDA)</h2>
